@@ -1,7 +1,24 @@
 // `components/EditMember.jsx`
 
-export default function EditMember({showList, member}) {
-  return <div>Edit Member: {member.first_name} {member.last_name}
-        <button onClick={showList}>Done</button>
-  </div>
-  }
+import CustomForm from "./CustomForm";
+
+
+export default function EditMember({ showList, member }) {
+
+  return (
+    <div>
+      <div style={{
+        height: 75,
+        borderBottomWidth: 2, borderBottomStyle: "solid", borderBottomColor: "black",
+        margin: 25
+      }}>
+        <div>Edit team member</div>
+        <div>Set email, location and role.</div>
+      </div>
+
+      <CustomForm showList={showList} member={member}></CustomForm>
+
+
+    </div >
+  );
+}
