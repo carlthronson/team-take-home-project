@@ -29,15 +29,15 @@ class Home extends Component {
       <Container style={{ marginTop: "20px" }}>
         <Row>
           <Col>
-            <TeamMemberList
-              teammembers={this.state.teammembers}
-              resetState={this.resetState}
-            />
+            <NewTeamMemberModal create={true} resetState={this.resetState} />
           </Col>
         </Row>
         <Row>
           <Col>
-            <NewTeamMemberModal create={true} resetState={this.resetState} />
+            <TeamMemberList
+              teammembers={this.state.teammembers}
+              resetState={this.resetState}
+            />
           </Col>
         </Row>
       </Container>

@@ -1,58 +1,67 @@
-import React, { Component } from "react";
-import { Table } from "reactstrap";
-import NewTeamMemberModal from "./NewTeamMemberModal";
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
+import TeamMember from './TeamMember';
+import { API_URL } from '../constants';
 
-import ConfirmRemovalModal from "./ConfirmRemovalModal";
+const TeamArea = styled.div`
+    background-color: #f4f5f7;
+    border-radius: 2.5px;
+    height: 475px;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    border: 1px solid gray;
+    flex: 1;
+`   ;
 
-class TeamMemberList extends Component {
-  render() {
-    const teammembers = this.props.teammembers;
+const TeamName = styled.h3`
+    padding: 8px;
+    background-color: lightblue;
+    text-align: center;
+    position: 'stick',
+`   ;
+
+const TeamMemberListArea = styled.div`
+    padding: 3px;
+  transistion: background-color 0.2s ease;
+  background-color: #f4f5f7;
+    flex-grow: 1;
+    min-height: 100px;
+`   ;
+
+export default function TeamMembersList({ team, id }) {
+    const [teamMembers, setTeamMembers] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        // const url = "/api/teammember/?format=json";
+        const url = API_URL;
+        console.log("url: " + url);
+        fetch(url)
+            .then((response) => {
+                const json = response.json();
+                const body = response.body;
+                return json;
+            })
+            .then((data) => {
+                setTeamMembers(data);
+                setIsLoading(false);
+            });
+    }, []);
+
     return (
-      <Table dark>
-        <thead>
-          <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Admin</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {!teammembers || teammembers.length <= 0 ? (
-            <tr>
-              <td colSpan="6" align="center">
-                <b>Ops, no one here yet</b>
-              </td>
-            </tr>
-          ) : (
-            teammembers.map(teammember => (
-              <tr key={teammember.pk}>
-                <td>{teammember.first_name}</td>
-                <td>{teammember.last_name}</td>
-                <td>{teammember.email}</td>
-                <td>{teammember.phone_number}</td>
-                <td>{teammember.admin}</td>
-                <td align="center">
-                  <NewTeamMemberModal
-                    create={false}
-                    teammember={teammember}
-                    resetState={this.props.resetState}
-                  />
-                  &nbsp;&nbsp;
-                  <ConfirmRemovalModal
-                    pk={teammember.pk}
-                    resetState={this.props.resetState}
-                  />
-                </td>
-              </tr>
-            ))
-          )}
-        </tbody>
-      </Table>
+        <TeamArea>
+            {/* <TeamName>
+                {phase.label + ' - ' + stories.length}
+            </TeamName> */}
+            <b>Team Members</b>
+            <div>You have {teamMembers.length} members</div>
+            <TeamMemberListArea>
+                {isLoading ? 'Please wait' : teamMembers.map((item, index) => (
+                    <TeamMember key={index} index={index} member={item} total={teamMembers.length}/>
+                ))}
+            </TeamMemberListArea>
+        </TeamArea>
     );
-  }
 }
 
-export default TeamMemberList;
