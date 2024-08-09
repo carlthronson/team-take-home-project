@@ -2,7 +2,8 @@
 'use client'
 
 import { useState, useEffect } from "react";
-import TeamMember from "../components/TeamMember"
+import TeamMember from "@/components/TeamMember"
+import TeamHeader from "@/components/TeamHeader";
 
 export default function Page() {
   const [teamMembers, setTeamMembers] = useState([]);
@@ -27,6 +28,7 @@ export default function Page() {
 
   return (
     <div>
+      {isLoading ? '' : <TeamHeader count={teamMembers.length}></TeamHeader>}
                 {isLoading ? 'Please wait' : teamMembers.map((item, index) => (
                     <TeamMember key={index} index={index} teamMember={item} total={teamMembers.length}/>
                 ))}
