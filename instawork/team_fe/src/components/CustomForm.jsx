@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 function CustomForm({ member, showList }) {
     const [formData, setFormData] = useState(member);
+    const [isAdmin, setIsAdmin] = useState(member.admin);
 
     let method;
     let url;
@@ -90,6 +91,34 @@ function CustomForm({ member, showList }) {
                 Phone:
                 <input type="text" name="phone_number" value={formData.phone_number} onChange={handleChange} />
             </label>
+            <div>
+                Role
+                <label>Regular:
+                    <input
+                    type='radio'
+                    name='admin'
+                    value='false'
+                    checked={!isAdmin}
+                    onChange={(event) => {
+                        setIsAdmin(false);
+                        handleChange(event);
+                    }}
+                    ></input>
+                </label>
+                <label>Admin:
+                <input
+                    type='radio'
+                    name='admin'
+                    value='true'
+                    checked={isAdmin}
+                    onChange={(event) => {
+                        setIsAdmin(true);
+                        handleChange(event);
+                    }}
+                    ></input>
+                </label>
+            </div>
+
             {
                 deleteText === null ? '' : <button type="button" onClick={handleDelete}>{deleteText}</button>
             }
