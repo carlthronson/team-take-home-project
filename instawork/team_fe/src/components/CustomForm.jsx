@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 function CustomForm({ member, showList }) {
     const [formData, setFormData] = useState(member);
-    const [isAdmin, setIsAdmin] = useState(member.admin);
+    const [isAdmin, setIsAdmin] = useState(member.admin === true);
 
     let method;
     let url;
@@ -24,6 +24,9 @@ function CustomForm({ member, showList }) {
 
         console.log('handleAction:' + method);
         console.log('handleAction:' + url);
+
+        // In case the user does not interact with the buttons at all
+        formData.admin = isAdmin;
 
         // Example: Send data using Fetch API
         fetch(url, {
