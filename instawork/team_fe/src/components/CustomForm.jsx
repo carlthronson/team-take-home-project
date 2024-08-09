@@ -5,19 +5,24 @@ function CustomForm({ member, showList }) {
 
     let method;
     let url;
+    let saveText;
+    let deleteText;
     if (member.first_name == null) {
         url = 'http://localhost:8000/api/teammember/';
         method = 'POST';
+        saveText = 'Save';
+        deleteText = null;
     } else {
         url = `http://localhost:8000/api/teammember/${member.id}/`;
         method = 'PUT';
+        saveText = 'Save';
+        deleteText = 'Delete';
     }
 
-    const handleSubmit = (event) => {
-        event.preventDefault(); // Prevent the default form submission
+    const handleAction = (event, url, method) => {
 
-        // Custom logic to handle form data
-        console.log('Form submitted:', formData);
+        console.log('handleAction:' + method);
+        console.log('handleAction:' + url);
 
         // Example: Send data using Fetch API
         fetch(url, {
@@ -45,6 +50,19 @@ function CustomForm({ member, showList }) {
             });
     };
 
+    const handleDelete = () => {
+        handleAction(null, url, 'DELETE');
+    }
+
+    const handleSubmit = (event) => {
+        event.preventDefault(); // Prevent the default form submission
+
+        // Custom logic to handle form data
+        console.log('Form submitted:', formData);
+
+        handleAction(event, url, method);
+    }
+
     const handleChange = (event) => {
         const { name, value } = event.target;
         setFormData((prevData) => ({
@@ -54,7 +72,8 @@ function CustomForm({ member, showList }) {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form
+            onSubmit={handleSubmit}>
             <label>
                 First Name:
                 <input type="text" name="first_name" value={formData.first_name} onChange={handleChange} />
@@ -71,7 +90,10 @@ function CustomForm({ member, showList }) {
                 Phone:
                 <input type="text" name="phone_number" value={formData.phone_number} onChange={handleChange} />
             </label>
-            <button type="submit">Submit</button>
+            {
+                deleteText === null ? '' : <button type="button" onClick={handleDelete}>{deleteText}</button>
+            }
+            <button type="submit">{saveText}</button>
         </form>
     );
 }

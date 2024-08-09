@@ -5,7 +5,7 @@ import TeamHeader from "./TeamHeader";
 import TeamMember from "./TeamMember";
 
 export default function Team({ showCreateMember, showEditMember }) {
-  console.log(showCreateMember);
+  // console.log(showCreateMember);
   const [teamMembers, setTeamMembers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
