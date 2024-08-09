@@ -1,38 +1,46 @@
 // `app/page.jsx` is the UI for the `/` URL
 'use client'
+import { useState } from 'react';
+import Team from '@/components/Team';
+import CreateMember from '@/components/CreateMember';
+import EditMember from '@/components/EditMember';
 
-import { useState, useEffect } from "react";
-import TeamMember from "@/components/TeamMember"
-import TeamHeader from "@/components/TeamHeader";
+const VIEWS = {
+    SHOW_LIST: 'SHOW_LIST',
+    CREATE_MEMBER: 'CREATE_MEMBER',
+    EDIT_MEMBER: 'EDIT_MEMBER'
+};
 
 export default function Page() {
-  const [teamMembers, setTeamMembers] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    // const url = "/api/teammember/?format=json";
-    // const url = API_URL;
-    const url = "http://localhost:8000/api/teammember/?format=json";
-    console.log("url: " + url);
-    fetch(url)
-        .then((response) => {
-            const json = response.json();
-            const body = response.body;
-            return json;
-        })
-        .then((data) => {
-            setTeamMembers(data);
-            setIsLoading(false);
-        });
-}, []);
+    const [mode, setMode] = useState(VIEWS.SHOW_LIST);
+    const [member, setMember] = useState(null)
 
-  return (
-    <div>
-      {isLoading ? '' : <TeamHeader count={teamMembers.length}></TeamHeader>}
-                {isLoading ? 'Please wait' : teamMembers.map((item, index) => (
-                    <TeamMember key={index} index={index} teamMember={item} total={teamMembers.length}/>
-                ))}
-    </div>
-  );
+    const showList = () => {
+        setMode(VIEWS.SHOW_LIST);
+    }
+
+    const showCreateMember = () => {
+        setMode(VIEWS.CREATE_MEMBER);
+    }
+
+    const showEditMember = (member) => {
+        setMember(member);
+        setMode(VIEWS.EDIT_MEMBER);
+    }
+
+    let content;
+    switch (mode) {
+        case VIEWS.CREATE_MEMBER:
+            content = <CreateMember showList={showList}></CreateMember>;
+            break;
+        case VIEWS.EDIT_MEMBER:
+            content = <EditMember showList={showList} member={member}></EditMember>;
+            break;
+        default:
+            content = <Team showCreateMember={showCreateMember} showEditMember={showEditMember}></Team>;
+            break;
+    }
+    return <div>{content}</div>
 }
 

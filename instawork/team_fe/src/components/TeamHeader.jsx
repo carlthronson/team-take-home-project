@@ -1,4 +1,4 @@
-// `components/TeamHeader.jsx` is the UI for one team member
+// `components/TeamHeader.jsx`
 
 export default function TeamHeader({ count }) {
 
