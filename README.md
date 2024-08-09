@@ -7,6 +7,7 @@ Steps to run this app.
   - Run the server: python manage.py runserver
 - cd into the react project folder and start the frontend
   - Install node modules: npm install
+  - Build app: npm run build
   - Run app: npm start
 
 TODO
