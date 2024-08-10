@@ -1,26 +1,30 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Team Members</title>
+    <link rel="stylesheet" href="{% static 'team/styles.css' %}">
 </head>
 <body>
     <a href="{% url 'teammember-add' %}" class="btn btn-primary">Add</a>
 
     <h1>Team Members</h1>
-    <ul>
+    You have {{ team_members|length }} members.
+    <div>
         {% for member in team_members %}
-            <li>
-              <a href="{% url 'teammember-edit' member.id %}">
+            <a href="{% url 'teammember-edit' member.id %}">
+              <div class='team-member'>
                 {% if member.role == True %}
                   {{ member.first_name }} {{ member.last_name }} (admin)<br>
                 {% else %}
                   {{ member.first_name }} {{ member.last_name }}<br>
                 {% endif %}
                 {{ member.email }}
-              </a>
-            </li>
+              </div>
+            </a>
         {% endfor %}
-    </ul>
+    </div>
 </body>
 </html>
