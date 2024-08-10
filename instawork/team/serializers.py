@@ -4,4 +4,4 @@ from .models import TeamMember
 class TeamMemberSerializer(serializers.ModelSerializer):
     class Meta:
         model = TeamMember
-        fields = ['id', 'first_name', 'last_name', 'email', 'phone_number', 'admin']
+        fields = ['id', 'first_name', 'last_name', 'email', 'phone_number', 'role']
