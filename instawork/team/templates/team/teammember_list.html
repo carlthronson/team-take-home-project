@@ -11,7 +11,7 @@
     <a href="{% url 'teammember-add' %}" class="btn btn-primary">Add</a>
 
     <h1>Team Members</h1>
-    You have {{ team_members|length }} members.
+    <section>You have {{ team_members|length }} members.</section>
     <div>
         {% for member in team_members %}
             <a href="{% url 'teammember-edit' member.id %}">
@@ -21,6 +21,7 @@
                 {% else %}
                   {{ member.first_name }} {{ member.last_name }}<br>
                 {% endif %}
+                {{ member.phone_number }}<br>
                 {{ member.email }}
               </div>
             </a>

@@ -12,8 +12,7 @@ a:visited {
 }
 
 a:hover {
-    color: #FF0000; /* Mouse over link */
-    /* text-decoration: underline; /* Add underline on hover */
+    background-color: lightgrey;
 }
 
 a:active {
@@ -22,6 +21,17 @@ a:active {
 
 .team-member {
       height: 75px;
+      border-bottom-width: 2px;
+      border-bottom-style: solid;
+      border-bottom-color: black;
+      margin: 15px;
+}
+
+.team-member:hover {
+    background-color: lightgrey;
+}
+
+section {
       border-bottom-width: 2px;
       border-bottom-style: solid;
       border-bottom-color: black;
