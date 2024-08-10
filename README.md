@@ -14,6 +14,7 @@ Steps to run this app.
 ### TODO
 
 - [x] Create separate pages for creating and editing team members. (currently using popup form)
+- [x] Add functionality for update and delete
 - [ ] Add team member profile picture to model and UX
 - [ ] Improve the general overall styling of the pages (mainly element alignments)
 - [ ] Error handling
