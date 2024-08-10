@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Team Members</title>
+</head>
+<body>
+    <a href="{% url 'teammember-add' %}" class="btn btn-primary">Add</a>
+
+    <h1>Team Members</h1>
+    <ul>
+        {% for member in team_members %}
+            <li>
+              <a href="{% url 'teammember-edit' member.id %}">
+                {{ member.first_name }} {{ member.last_name }} - {{ member.admin }}<br>
+                {{ member.email }}
+              </a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -1,9 +1,17 @@
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status
+from django.http import HttpResponse
+from django.views.generic import ListView
 
 from .models import TeamMember
 from .serializers import *
+
+from django.views.generic.edit import CreateView, UpdateView
+from .forms import TeamMemberForm
+
+from django.urls import reverse_lazy
+from django.views.generic import DeleteView
 
 @api_view(['GET', 'POST'])
 def teammember_list(request):
@@ -39,3 +47,35 @@ def teammember_detail(request, pk):
     elif request.method == 'DELETE':
         teammember.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+class TeamMemberCreateView(CreateView):
+    model = TeamMember
+    form_class = TeamMemberForm
+    template_name = 'team/teammember_form.html'
+    success_url = '/team/team/'  # Redirect after successful form submission
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['is_edit'] = False
+        return context
+
+class TeamMemberUpdateView(UpdateView):
+    model = TeamMember
+    form_class = TeamMemberForm
+    template_name = 'team/teammember_form.html'
+    success_url = '/team/team/'  # Redirect after successful form submission
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['is_edit'] = True
+        return context
+
+class TeamMemberListView(ListView):
+    model = TeamMember
+    template_name = 'team/teammember_list.html'  # Specify your template name
+    context_object_name = 'team_members'  # Name to use in the template context
+
+class TeamMemberDeleteView(DeleteView):
+    model = TeamMember
+    template_name = 'team/teammember_confirm_delete.html'
+    success_url = reverse_lazy('teammember-list')  # Redirect after successful deletion
