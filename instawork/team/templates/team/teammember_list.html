@@ -12,7 +12,11 @@
         {% for member in team_members %}
             <li>
               <a href="{% url 'teammember-edit' member.id %}">
-                {{ member.first_name }} {{ member.last_name }} - {{ member.admin }}<br>
+                {% if member.role == True %}
+                  {{ member.first_name }} {{ member.last_name }} (admin)<br>
+                {% else %}
+                  {{ member.first_name }} {{ member.last_name }}<br>
+                {% endif %}
                 {{ member.email }}
               </a>
             </li>

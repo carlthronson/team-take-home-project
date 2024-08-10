@@ -8,6 +8,6 @@ class TeamMember(models.Model):
     last_name = models.CharField(max_length=150)
     email = models.EmailField()
     phone_number = PhoneNumberField(blank=True)
-    admin = models.BooleanField(default=True)
+    role = models.BooleanField(default=True)
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
