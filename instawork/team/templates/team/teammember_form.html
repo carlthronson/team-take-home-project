@@ -14,9 +14,29 @@
         {% csrf_token %}
         <div class='column'>
           <h2>Info</h2>
+          {% if form.first_name.errors %}
+            <div class="error">
+                {{ form.first_name.errors }}
+            </div>
+          {% endif %}
           <div class='row'> {{ form.first_name }} </div>
+          {% if form.last_name.errors %}
+            <div class="error">
+                {{ form.last_name.errors }}
+            </div>
+          {% endif %}
           <div class='row'> {{ form.last_name }} </div>
+          {% if form.email.errors %}
+            <div class="error">
+                {{ form.email.errors }}
+            </div>
+          {% endif %}
           <div class='row'> {{ form.email }} </div>
+          {% if form.phone_number.errors %}
+            <div class="error">
+                {{ form.phone_number.errors }}
+            </div>
+          {% endif %}
           <div class='row'> {{ form.phone_number }} </div>
           <h2>Role</h2>
           <div class='row'> {{ form.role }} </div>
