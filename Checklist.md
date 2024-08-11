@@ -26,4 +26,16 @@ Notes:
 - [x] Use generic class-based views
 - [ ] The front-end is ideally implemented as a SPA
 
+Last Steps:
+- [x] Create a public repository on Github
+- [x] Implement the spec and push to repo.
+- [x] Create proper documentation for building and testing.
+- [x] Add collaborators
+
+Spec??
+- [x] Add Page
+- [x] Edit Page
+- [x] List Page
+- [x] Test case(s)
+
 
