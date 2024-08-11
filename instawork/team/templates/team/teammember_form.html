@@ -5,10 +5,22 @@
     <title>TeamMember Form</title>
 </head>
 <body>
-    <h1>TeamMember Form</h1>
+    {% if is_edit %}
+        <h1>Edit team member</h1>Edit contact info, location and role.
+    {% else %}
+        <h1>Add a team member</h1>Set email, location and role.
+    {% endif %}
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+        <div class='column'>
+          <h2>Info</h2>
+          <div class='row'> {{ form.first_name }} </div>
+          <div class='row'> {{ form.last_name }} </div>
+          <div class='row'> {{ form.email }} </div>
+          <div class='row'> {{ form.phone_number }} </div>
+          <h2>Role</h2>
+          <div class='row'> {{ form.role }} </div>
+        </div>
         <button type="submit">Save</button>
     </form>
     {% if is_edit %}

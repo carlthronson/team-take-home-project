@@ -37,3 +37,19 @@ section {
       border-bottom-color: black;
       margin: 15px;
 }
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+}
+
+.right {
+    margin-left: auto;
+    margin-right: 50px;
+}
