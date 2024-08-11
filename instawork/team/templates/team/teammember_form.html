@@ -1,16 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>TeamMember Form</title>
-</head>
-<body>
-    {% if is_edit %}
-        <h1>Edit team member</h1>Edit contact info, location and role.
-    {% else %}
-        <h1>Add a team member</h1>Set email, location and role.
-    {% endif %}
-    <form method="post">
+<!-- teammember_form.html -->
+{% extends 'team/base_page.html' %}
+
+{% block content %}
+    <form id="teammember_form" method="post">
         {% csrf_token %}
         <div class='column'>
           <h2>Info</h2>
@@ -41,10 +33,13 @@
           <h2>Role</h2>
           <div class='row'> {{ form.role }} </div>
         </div>
-        <button type="submit">Save</button>
     </form>
+
+{% endblock %}
+
+{% block actions %}
+    <button type="submit" form="teammember_form">Save</button>
     {% if is_edit %}
         <a href="{% url 'teammember-delete' object.id %}" class="btn btn-danger">Delete</a>
     {% endif %}
-</body>
-</html>
+{% endblock %}

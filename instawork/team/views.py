@@ -57,6 +57,8 @@ class TeamMemberCreateView(CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['is_edit'] = False
+        context['header_title'] = 'Add a team member'
+        context['header_description'] = 'Set email, location and role.'
         return context
 
 class TeamMemberUpdateView(UpdateView):
@@ -68,6 +70,8 @@ class TeamMemberUpdateView(UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['is_edit'] = True
+        context['header_title'] = 'Edit Team Member'
+        context['header_description'] = 'Edit contact info, location and role.'
         return context
 
 class TeamMemberListView(ListView):

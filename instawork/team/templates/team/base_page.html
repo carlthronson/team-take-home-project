@@ -1,0 +1,24 @@
+-{% load static %}
+
+<!-- base template -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}My Site{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'team/styles.css' %}?v={{ timestamp }}">
+</head>
+<body>
+    {% block header %}
+        {% include 'team/header.html' with title=header_title description=header_description %}
+    {% endblock %}
+
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+
+    <div class="actions">
+        {% block actions %}{% endblock %}
+    </div>
+</body>
+</html>

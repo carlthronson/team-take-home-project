@@ -1,19 +1,12 @@
-{% load static %}
+<!-- teammember_form.html -->
+{% extends 'team/base_page.html' %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Team Members</title>
-    <link rel="stylesheet" href="{% static 'team/styles.css' %}">
-</head>
-<body>
-    <div class='row'>
-      <a class='right' href="{% url 'teammember-add' %}" class="btn btn-primary"><h1>+</h1></a>
-    </div>
-
+{% block header %}
     <h1>Team Members</h1>
     <section>You have {{ team_members|length }} members.</section>
+{% endblock %}
+
+{% block content %}
     <div>
         {% for member in team_members %}
             <a href="{% url 'teammember-edit' member.id %}">
@@ -29,5 +22,7 @@
             </a>
         {% endfor %}
     </div>
-</body>
-</html>
+{% endblock %}
+
+{% block actions %}
+{% endblock %}
