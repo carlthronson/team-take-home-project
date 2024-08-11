@@ -1,12 +1,16 @@
 Steps to run this app.
 
-- Setup the environment (Python, Django, Node)
+- Setup the environment (Python, Django)
 - Clone this repository
-- cd into the project root and start the backend server
+- cd into the project root and start the Django App
   - Install the pyton dependencies from requirements.txt
   - Run the migrations: python manage.py migrate
   - Run the server: python manage.py runserver
-- cd into the react project folder and start the frontend
+
+There is also a front end that is created using React
+Steps to run the React app
+- Setup Node
+- cd into the react project folder (team_fe) and start the frontend
   - Install node modules: npm install
   - Build app: npm run build
   - Run app: npm start
