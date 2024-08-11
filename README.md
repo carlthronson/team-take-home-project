@@ -32,11 +32,3 @@ Steps to run the React app
   - Build app: ```npm run build```
   - Run app: ```npm start```
 
-### TODO
-
-- [x] ~~Create separate pages for creating and editing team members. (currently using popup form)~~
-- [x] ~~Add functionality for update and delete~~
-- [ ] Add team member profile picture to model and UX
-- [ ] Improve the general overall styling of the pages (mainly element alignments)
-- [x] ~~Error handling~~
-- [x] ~~Test cases~~
