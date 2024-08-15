@@ -22,7 +22,8 @@ Test:
 Run:
   - run the server command
         ```python manage.py runserver```
-
+  - Open the frontend app in your browser
+        http://localhost:8000/team/team/
 
 There is also a front end that is created using React
 Steps to run the React app
@@ -31,4 +32,7 @@ Steps to run the React app
   - Install node modules: ```npm install```
   - Build app: ```npm run build```
   - Run app: ```npm start```
+ 
+- Open the frontend app in your browser
+     http://localhost:3000
 
